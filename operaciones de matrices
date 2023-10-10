@@ -1,0 +1,168 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    srand(time(NULL));
+
+    int matrizA[10][10], matrizB[10][10], resultado[10][10];
+    int filas, columnas, opcion;
+    int sumaTriangularSuperior = 0; 
+    int sumaDiagonal = 0; 
+
+    printf("Ingrese el numero de filas y columnas (max 10): ");
+    scanf("%d", &filas);
+    columnas = filas;
+
+    for (int i = 0; i < filas; i++) 
+    {
+        for (int j = 0; j < columnas; j++) 
+        {
+            matrizA[i][j] = rand() % 10;
+            matrizB[i][j] = rand() % 10;
+        }
+    }
+
+    do {
+        printf("\nMenu:\n");
+        printf("1. Sumar matrices\n");
+        printf("2. Restar matrices\n");
+        printf("3. Multiplicar matrices\n");
+        printf("4. Calcular suma diagonal principal de matriz A\n");
+        printf("5. Calcular suma parte triangular superior de matriz A\n");
+        printf("0. Salir\n");
+        printf("Seleccione una opcion: ");
+        scanf("%d", &opcion);
+
+        switch(opcion) 
+        {
+            case 1:
+                printf("\nMatriz A:\n");
+                for (int i = 0; i < filas; i++) 
+                {
+                    for (int j = 0; j < columnas; j++) 
+                    {
+                        printf("%d ", matrizA[i][j]);
+                    }
+                    printf("\n");
+                }
+
+                printf("\nMatriz B:\n");
+                for (int i = 0; i < filas; i++) 
+                {
+                    for (int j = 0; j < columnas; j++) 
+                    {
+                        printf("%d ", matrizB[i][j]);
+                    }
+                    printf("\n");
+                }
+
+                printf("\nResultado de la suma de matrices:\n");
+                for (int i = 0; i < filas; i++) 
+                {
+                    for (int j = 0; j < columnas; j++) 
+                    {
+                        resultado[i][j] = matrizA[i][j] + matrizB[i][j];
+                        printf("%d ", resultado[i][j]);
+                    }
+                    printf("\n");
+                }
+                break;
+            case 2:
+                printf("\nMatriz A:\n");
+                for (int i = 0; i < filas; i++) 
+                {
+                    for (int j = 0; j < columnas; j++) 
+                    {
+                        printf("%d ", matrizA[i][j]);
+                    }
+                    printf("\n");
+                }
+
+                printf("\nMatriz B:\n");
+                for (int i = 0; i < filas; i++) 
+                {
+                    for (int j = 0; j < columnas; j++) 
+                    {
+                        printf("%d ", matrizB[i][j]);
+                    }
+                    printf("\n");
+                }
+
+                printf("\nResultado de la resta de matrices:\n");
+                for (int i = 0; i < filas; i++) 
+                {
+                    for (int j = 0; j < columnas; j++) 
+                    {
+                        resultado[i][j] = matrizA[i][j] - matrizB[i][j];
+                        printf("%d ", resultado[i][j]);
+                    }
+                    printf("\n");
+                }
+                break;
+            case 3:
+                printf("\nMatriz A:\n");
+                for (int i = 0; i < filas; i++) 
+                {
+                    for (int j = 0; j < columnas; j++) 
+                    {
+                        printf("%d ", matrizA[i][j]);
+                    }
+                    printf("\n");
+                }
+
+                printf("\nMatriz B:\n");
+                for (int i = 0; i < filas; i++) 
+                {
+                    for (int j = 0; j < columnas; j++) 
+                    {
+                        printf("%d ", matrizB[i][j]);
+                    }
+                    printf("\n");
+                }
+
+                printf("\nResultado de la multiplicacion de matrices:\n");
+                for (int i = 0; i < filas; i++) 
+                {
+                    for (int j = 0; j < columnas; j++) 
+                    {
+                        resultado[i][j] = 0;
+                        for (int k = 0; k < columnas; k++) 
+                        {
+                            resultado[i][j] += matrizA[i][k] * matrizB[k][j];
+                        }
+                        printf("%d ", resultado[i][j]);
+                    }
+                    printf("\n");
+                }
+                break;
+            case 4:
+                sumaDiagonal = 0;
+                for (int i = 0; i < filas && i < columnas; i++) 
+                {
+                    sumaDiagonal += matrizA[i][i];
+                }
+                printf("\nLa suma de la diagonal principal de la matriz A es: %d\n", sumaDiagonal);
+                break;
+            case 5:
+                sumaTriangularSuperior = 0;
+                for (int i = 0; i < filas; i++) 
+                {
+                    for (int j = i; j < columnas; j++) 
+                    {
+                        sumaTriangularSuperior += matrizA[i][j];
+                    }
+                }
+                printf("\nLa suma de la parte triangular superior de la matriz A es: %d\n", sumaTriangularSuperior);
+                break;
+            case 0:
+                printf("Saliendo del programa...\n");
+                break;
+            default:
+                printf("Opcion invalida. Por favor seleccione una opcion valida.\n");
+        }
+
+    } while (opcion != 0);
+
+    return 0;
+}
